@@ -1,0 +1,48 @@
+<% content_for :title do %>Created Project Detail <% end %>
+<% content_for :sub_title do %>Please check below for the detail of project you just created!<% end %>
+<div class="row row-bg">
+  <div class="col-md-12 clearfix ">
+    <%= link_to 'Edit', edit_user_project_path(@user, @project), class: "btn btn-success pull-right" %>
+    <% unless @project.token.present? && @user.token.present? %>
+      <%= link_to 'Generate Token', user_project_token_path(@user, @project), class: "btn btn-default pull-right" %>
+    <% end %>
+
+    <dl class="dl-horizontal">
+      <dt>Name:</dt>
+      <dd><%= @project.name %></dd>
+    </dl>
+    <dl class="dl-horizontal">
+      <dt>URL:</dt>
+      <dd><%= @project.url %></dd>
+    </dl>
+    <dl class="dl-horizontal">
+      <dt>Owner:</dt>
+      <dd><%= @project.creator.full_name %></dd>
+    </dl>
+    <dl class="dl-horizontal">
+      <dt>Members:</dt>
+      <dd>
+        <ul>
+        <% @project.members.each do |member| %>
+        <li><%= member.full_name %></li>
+        <% end %>
+      </ul>
+      </dd>
+    </dl>
+
+    <% if @project.token.present? %>
+      <dl class="dl-horizontal">
+        <dt>Project Token:</dt>
+        <dd><%= @project.token %></dd>
+      </dl>
+    <% end %>
+
+    <% if @user.token.present? %>
+      <dl class="dl-horizontal">
+        <dt>User Token:</dt>
+        <dd><%= @user.token %></dd>
+      </dl>
+    <% end %>
+
+  </div>
+</div>

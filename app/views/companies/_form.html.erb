@@ -1,0 +1,61 @@
+<%= form_for(@company, html: { class: "col-md-12 form-horizontal" }) do |f| %>
+
+  <% if @company.errors.any? %>
+    <div id="errorExplanation" class="alert alert-danger">
+      <h2>
+        <%= pluralize(@company.errors.count, "error") %> prohibited
+        this company from being saved:
+      </h2>
+      <ul>
+        <% @company.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name, :class=> "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :name, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :address, :class=> "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :address, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :url, :class=> "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :url, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :allow_email_regex, "Allow email regex" , :class=> "col-sm-2 control-label" %>
+    
+    <div class="col-sm-10">
+      <%= f.radio_button :allow_email_regex, :true %>
+      <%= f.label :allow_email_regex_true, "Yes" %>
+      <%= f.radio_button :allow_email_regex, :false %>
+      <%= f.label :allow_email_regex_false, "No", :checked => 'checked'  %>
+    </div>
+  </div>
+
+  <div class="form-group" id="show_hide_email_format" style="<%= 'display:none' if @company.allow_email_regex == false %>">
+    <%= f.label :email_format, :class=> "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :email_format, :class => "form-control"  %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit :class => "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

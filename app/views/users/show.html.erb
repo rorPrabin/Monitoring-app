@@ -1,0 +1,40 @@
+<% content_for :title do %><%= @user.full_name %><% end %>
+<% content_for :sub_title do %>Check below for the details of this user.<% end %>
+
+<%= render :partial => 'form' %>
+
+<% if @u_projects == [] || @u_projects.nil? %>
+	<h3 class="section_title">No project has been assigned to <%= @user.first_name %>.</h3>
+<% else %>
+	<h3 class="section_title">
+		<%= @user.first_name %>'s Projects:
+		<% if @user.current_user?(current_user) %>
+			<%= link_to "Add Project", new_user_project_path(@user), :class => "btn btn-primary pull-right"%>
+		<%end%>
+	</h3>
+
+	<table class="table table-bordered table-striped">
+		<tr>
+			<th>Project Name</th>
+			<th>URL</th>
+
+			<% if can? :update, @project %>
+				<th>Action</th>
+			<% end %>
+		</tr>
+
+		<% @u_projects.each do |p| %>
+			<tr>
+				<td><%= p.name %></td>
+				<td><%= p.url %></td>
+
+				<% if can? :update, p%>
+					<td><%= link_to "Edit", edit_user_project_path(@user.id, p.id), class: "label label-primary"%></td>
+				<% end %>
+			</tr>
+		<% end %>
+		<tr> <%= paginate  @u_projects %> </tr>
+
+	</table>
+
+<% end %>

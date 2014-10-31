@@ -1,0 +1,49 @@
+<% @user = current_user
+  if current_user.system_admin?
+    @projects = Project.all
+  # elsif current_user.company.nil?
+  #   puts "Sorry, you are not company member"  
+  else
+    @projects = current_user.company.projects
+  end 
+%>
+<% @company = current_user.company %>
+<div id="sidebar" class="fixed-sidebar">
+  <div id="sidebar-content">
+    <div class="company_header clearfix">
+      <span class="company_img">
+        <% if @company.image.exists? %>
+          <%= image_tag @company.image.url(:thumb) %><!-- SIZE: 54px X 54px -->
+        <% else %>
+          <%= image_tag "es_logo.png" %>
+        <% end %>
+      </span>
+
+      <h1><%= link_to "#{current_user.company.name}", my_company_path %></h1>
+
+      <%= form_for @company, :html => {:multipart => true, :class => "form-inline image-uploader"} do |f| %>
+        <div class="input-group input-group-sm">
+          <input type="text" class="form-control" readonly>
+          <span class="input-group-btn">
+            <span class="btn btn-default btn-file">
+              Browse <%= f.file_field :image %>
+            </span>
+            <%= f.submit "Upload", :class => "btn btn-primary" %>
+          </span>
+        </div>
+        
+      <% end %>
+    </div>
+    <%= link_to root_url, :class => "dashboard_link current" do %>
+      <i class="glyphicon glyphicon-dashboard"></i>
+      Dashboard
+    <% end %>
+    <h3 class="menu_head">
+      My Projects
+      <%= link_to new_user_project_path(@user), class: "add_btn" do %>
+        Add <i class="glyphicon glyphicon-plus"></i>
+      <% end %>
+    </h3>
+    <%= render partial: "projects/my_projects" %>
+  </div>
+</div>

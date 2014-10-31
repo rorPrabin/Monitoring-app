@@ -1,0 +1,18 @@
+<% content_for :title do %>Dashboard<% end %>
+<% content_for :sub_title do %>
+  <%= greeting %>, <%= current_user.first_name %>!
+<% end %>
+
+<% @users = User.all %>
+
+<div class="row row-bg">
+  <%= render partial: "notifications" %>
+</div>
+<div class="row">
+  <%= render partial: "project_status" if @projects.present? %>
+</div>
+
+
+<div class = "status">
+  <%= render partial: "status" %>
+</div>

@@ -1,0 +1,73 @@
+<div class="row row-bg">
+	<%= form_for [@company, @user], html: { class: "form-horizontal col-md-12 clearfix" } do |f| %>
+	<% if @user.errors.any? %>
+	<div id="errorExplanation" class="alert alert-danger">
+		<h2>
+			<%= pluralize(@user.errors.count, "error") %> prohibited
+			this user from being saved:
+		</h2>
+		<ul>
+			<% @user.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+	<div class="form-group">
+		<%= f.label :first_name, "First Name", :class => "col-sm-2 control-label" %>
+		<div class="col-sm-10">
+			<%= f.text_field :first_name, :autofocus => true, :class => "form-control" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :last_name, "Last Name", :class => "col-sm-2 control-label" %>
+		<div class="col-sm-10">
+			<%= f.text_field :last_name, :class => "form-control" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :email, "Email", :class => "col-sm-2 control-label" %>
+		<div class="col-sm-10">
+			<%= f.text_field :email, :class => "form-control" %>
+		</div>
+	</div>
+
+
+	<% if cannot? :update, @user %>
+	<div class="form-group">
+		<%= f.label :password, "Password", :class => "col-sm-2 control-label" %>
+		<div class="col-sm-10">
+			<%= f.password_field :password, :class => "form-control" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :password_confirmation, "Password Confirmation", :class => "col-sm-2 control-label" %>
+		<div class="col-sm-10">
+			<%= f.password_field :password_confirmation, :class => "form-control" %>
+		</div>
+	</div>
+	<% end %>
+
+	<% if can? :update, @user %>
+	<div class="form-group">
+		<%= f.label :role, "Select Role", :class => "col-sm-2 control-label" %>
+		<div class="col-sm-10">
+			<% if current_user.is_admin? %>
+			<%#= f.select :role, User.all.collect { |p| [p.role,p.id] } %> 
+			<%= f.select :role, [["Admin", "admin"], ["Company Admin", "company_admin"], ["General User", "general_user"]], {}, :class => "form-control" %>
+			<% end %>
+		</div>
+	</div>
+	<% end %>
+
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<%= f.submit :class => "btn btn-primary" %>
+			<%= link_to "Back", :back, class: "btn btn-default" %>
+		</div>
+	</div>
+	<% end %>
+</div>

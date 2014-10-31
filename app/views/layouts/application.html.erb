@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MonitorApp</title>
+	<%= javascript_include_tag "http://www.google.com/jsapi", "chartkick" %>
+	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+	
+	<%= render partial: "layouts/header" %>
+
+	<div id="container" class="fixed-header">
+		<%= render partial: "projects/sidebar" %>
+		<div id="content">
+			<div class="container">
+				<div class="page-header">
+					<%= render partial: "layouts/welcome" %>
+				</div>
+				<% if flash.any? %>
+					<%= render partial: "layouts/flash_msg" %>
+				<% end %>
+
+				<%= yield %>
+
+				<%= render partial: "layouts/footer" %>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

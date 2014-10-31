@@ -1,0 +1,31 @@
+<div class="page-title"> 
+	<h3><%= yield :title %></h3> 
+	<span><%= yield :sub_title %></span> 
+</div>
+<div class="dropdown pull-right date_selection">
+	<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+		<i class="calendar_icon"></i>
+		<h4>
+			<%= start_time_title %>
+			<span>Ending Now</span>
+		</h4> 
+		<span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu">
+		<%#= select_tag ((1.days)..(7.days)).step(1.day).
+     collect { |i| ["Last "+distance_of_time_in_words(0, i), (i).to_i] } %>
+    <li><%= link_to "Last 30 Minutes", set_time_path(:time => '30.minutes.ago') %></a></li>
+    <li><%= link_to "Last 1 hour", set_time_path(:time => '1.hours.ago') %></li>
+    <li><%= link_to "Last 24 hours", set_time_path(:time => '24.hours.ago') %></li>
+		<li><%= link_to "Last 3 days", set_time_path(:time => '3.days.ago') %></li>
+		<li><%= link_to "Last 7 days", set_time_path(:time => '7.days.ago') %></li>
+		<li class="divider"></li>
+		<li><%= link_to "From the beginning", set_time_path(:time => 'all') %></li>
+		<li class="divider"></li>
+		<li>
+			<form class="navbar-form">
+				<input type="text" class="form-control" placeholder="Enter number in days" />
+			</form>
+		</li>
+	</ul>
+</div>

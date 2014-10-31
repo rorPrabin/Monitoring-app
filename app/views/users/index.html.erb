@@ -1,0 +1,46 @@
+<% content_for :title do %>Users<% end %>
+<% content_for :sub_title do %>Check below for the list of users.<% end %>
+<div class="row row-bg">
+  <div class="col-md-12">
+  	<h3 class="section_title">
+  		Listing Users <%= link_to "Add new user", new_company_user_path(current_user.company), class: "btn btn-primary pull-right" %> 
+  	</h3>
+		<% if @users.nil? %>
+			<%= "You don't have any users" %>
+		<% else %>
+		<table class="table table-bordered table-striped">
+			<tr>
+				<th>SN</th>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Projects</th>
+				<th>Actions</th>
+			</tr>
+
+			<% @users.each_with_index do |user, i| %>
+			<tr>
+				<td><%= i+1 %></td>
+				<td><%= user.full_name %></td>
+				<td><%= mail_to user.email %></td>
+				<td>
+					<ul>			
+						<% user.projects.each do |project| %>
+							<li><%= link_to project.name, user_project_path(user, project)  %></li>
+						<% end %>
+					</ul>
+				</td>
+				<td>
+					<%= link_to "Detail", user, :class => "label label-primary" %>
+					<%= link_to "Edit", edit_user_path(user), :class => "label label-primary" %>
+					<%= link_to "Delete", user, method: :delete, confirm: "Are you sure to delete this user?", :class => "label label-danger" %>
+				</td>
+			</tr>
+
+			<% end %>
+		<% end %>
+
+		<tr> <%= paginate  @users %> </tr>
+
+		</table>
+	</div>
+</div>

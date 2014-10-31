@@ -1,0 +1,9 @@
+<section id="flash">
+  <% flash.each do |key, value| %>
+  <div class="row">
+    <div class="col-md-12">
+      <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+    </div>
+  </div>
+  <% end %>
+</section>

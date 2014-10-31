@@ -1,0 +1,5 @@
+$('.status').html("<%= escape_javascript render(:partial => 'status', :locals => {:document => @project}) %>")
+var d = document.getElementById("<%= @project.id %>");
+$('.single_project').removeClass(' current');
+$('.dashboard_link').removeClass(' current');
+d.className = d.className + " current";

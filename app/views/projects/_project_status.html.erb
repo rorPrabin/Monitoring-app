@@ -1,0 +1,13 @@
+<div class="col-md-12">
+  <div class="widget box"> 
+    <div class="widget-header"> 
+      <h4>
+        <i class="glyphicon glyphicon-th-list"></i> 
+        Current Status
+      </h4>
+    </div> 
+    <div class="widget-content status">
+      <%= render :partial => "status", :locals => {:document => @projects.first} %>
+    </div> 
+  </div>
+</div>

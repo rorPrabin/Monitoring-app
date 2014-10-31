@@ -1,0 +1,10 @@
+<% if can? :new, @project %>
+  <% content_for :title do %>Add Project<% end %>
+  <% content_for :sub_title do %>You can add new project from here!<% end %>
+
+  <div class="row row-bg">
+    <div class="col-md-12">
+      <%= render :partial => "form" %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,19 @@
+<h1>Monitoring Table <a id="start_runtime" href="#" class="btn btn-primary pull-right">View in RunTime</a></h1>
+<hr/>
+<p class="alert alert-info">Last reload at <%= Time.now %></p>
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Project ID</th>
+    <th>Project URL</th>
+    <th>Project Status</th>
+  </tr>
+  <% @projects.each do |project| %>
+    <tr>
+      <td><%= project.id %></td>
+      <td><%= project.url %></td>
+      <td class="<%= (project.status == "OK") ?   "green" :  "red" %>">
+        <%= project.status %>
+      </td>
+    </tr>
+  <% end %>
+</table>

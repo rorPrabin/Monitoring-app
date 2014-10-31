@@ -1,0 +1,31 @@
+<% content_for :title do %>My Projects<% end %>
+<% content_for :sub_title do %>See your projects list here.<% end %>
+<div class="row row-bg">
+	<div class="col-md-12">
+		<% if @user.is_admin? %>
+			<h3 class="section_title">Projects Listing<%= link_to 'Add New Project', new_user_project_path(@user), class: "btn btn-primary pull-right" %></h3>
+		<% end %>
+		<% if @user.projects.nil? %>
+			<%= "You, don't have any projects" %>
+		<% else %>
+			<table class="table table-bordered table-striped">
+				<tr>
+					<th>Project Name</th>
+					<th>Project URL</th>
+					<th>Action</th>
+				</tr>
+
+				<% @projects.each do |p| %>
+					<tr>
+						<td><%= p.name %></td>
+						<td><%= p.url %></td>
+						<td><%= link_to "Edit", edit_user_project_path(@user.id, p.id), class: "label label-primary"%></td>
+					</tr>
+				<% end %>
+
+			<tr> <%= paginate  @projects %> </tr>
+
+			</table>
+		<% end %>
+	</div>
+</div>

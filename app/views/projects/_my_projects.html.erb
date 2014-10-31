@@ -1,0 +1,7 @@
+<ul class="left_nav">
+	<% @projects.each do |project| %>
+		<li class='single_project' id ='<%= project.id %>'>
+			<%= link_to project.name, user_project_path(@user, project), :remote => true  %>
+		</li>
+	<% end %>
+</ul>

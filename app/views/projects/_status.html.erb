@@ -1,0 +1,25 @@
+<% if defined? document %>
+  <% if @monitoring_data.present? %>
+    <h2><%= document.name %> IS DOWN</h2>
+    <table border='1' class="table">
+      <tr>
+        <th>From</th>
+        <th>To</th>
+        <th>Time</th>
+      </tr>
+
+      <tr>
+        <td><%= @start %></td>
+        <td><%= @end %></td>
+        <td><%= distance_of_time_in_words(@start, @end) %></td>
+      </tr>
+
+    </table>
+
+  <% else %>
+    <h1><%= document.name  %></h1>
+    <%= area_chart monitoring_data(document).collect{|t| [t.created_at, t.response_time]} %>
+  <% end %>
+<% else %>
+	<%= pie_chart current_user.projects.group("status").count, :height => "250px"  %>
+<% end %>
