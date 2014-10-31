@@ -29,6 +29,8 @@ gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
+# A wrapper around ImageMagick's identify command.
+gem 'imagemagick-identify', '~> 0.0.1'
 
 # Use paperclip to upload image
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"

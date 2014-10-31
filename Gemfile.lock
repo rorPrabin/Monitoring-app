@@ -113,6 +113,7 @@ GEM
       thor (>= 0.18.1)
     hike (1.2.3)
     i18n (0.6.9)
+    imagemagick-identify (0.0.1)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
@@ -271,6 +272,7 @@ DEPENDENCIES
   devise (= 3.0.0)
   factory_girl_rails
   guard
+  imagemagick-identify (~> 0.0.1)
   jbuilder (~> 1.2)
   jquery-rails
   kaminari

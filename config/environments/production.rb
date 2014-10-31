@@ -88,8 +88,8 @@ MonitorApp::Application.configure do
     :address              => "smtp.gmail.com",
     :port                 => 587,
     :domain               => "anythingworks",
-    :user_name            => "sushil@esignature.com.np",
-    :password             => "mathers@123",
+    :user_name            => "senorita10018@gmail.com",
+    :password             => "11111121",
     :authentication       => "plain",
     :enable_starttls_auto => true
   }
