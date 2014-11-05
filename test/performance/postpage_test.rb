@@ -17,4 +17,6 @@ class PostpageTest < ActionDispatch::PerformanceTest
   test "Creare new user" do
     post '/users', user: { email: "abc@abc.come", password: "password" }
   end
+
+  
 end

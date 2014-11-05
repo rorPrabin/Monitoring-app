@@ -1,5 +1,10 @@
 <% content_for :title do %>Users<% end %>
 <% content_for :sub_title do %>Check below for the list of users.<% end %>
+
+<% benchmark("Showing projects partial") do %>
+  <%= render @projects %>
+<% end %>
+
 <div class="row row-bg">
   <div class="col-md-12">
   	<h3 class="section_title">
