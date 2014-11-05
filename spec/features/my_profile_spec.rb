@@ -9,7 +9,7 @@ describe "View User profile", js: true  do
 
     it "should not display project if not exit" do
       @user = FactoryGirl.create(:user)
-      
+      @project = FactoryGirl.build(:project)
       visit "/"
       click_link_or_button "Login"
       fill_in "Email", with: @user.email
@@ -23,9 +23,10 @@ describe "View User profile", js: true  do
 
       expect(page).to have_selector("h3", text: "No project has been assigned to #{@user.first_name}.")
       User.count.should be(1)
-      # Project.count.should be_nil
+      Project.count.should be nil
       @user.company_admin.should == false
       @user.admin.should == false
+      # @user = User.find(params[:id])
 
     end
 

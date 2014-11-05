@@ -96,6 +96,9 @@ gem 'ruby-prof'
 # simplecov for code coverage analysis
 gem 'simplecov', :require => false, :group => :test
 
+# rcov is a code coverage tool for Ruby.
+# gem 'rcov', '~> 1.0.0'
+
 gem 'kaminari'
 
 # Use ActiveModel has_secure_password
